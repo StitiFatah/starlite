@@ -114,7 +114,7 @@ repos:
     rev: "v2.15.5"
     hooks:
       - id: pylint
-        exclude: "test_*"
+        exclude: "test_*|examples*"
         args: ["--unsafe-load-any-extension=y"]
         additional_dependencies:
           [
@@ -122,6 +122,33 @@ repos:
             fsspec,
             multidict,
             opentelemetry-instrumentation-asgi,
+            orjson,
+            piccolo,
+            picologging,
+            pydantic,
+            pydantic_factories,
+            pydantic_openapi_schema,
+            pyyaml,
+            redis,
+            sqlalchemy,
+            starlette,
+            starlite_multipart,
+            structlog,
+            tortoise_orm,
+          ]
+  - repo: https://github.com/pycqa/pylint
+    rev: "v2.15.5"
+    hooks:
+      - id: pylint
+        name: "pylint examples"
+        files: "examples*"
+        exclude: "test_*"
+        args: ["--unsafe-load-any-extension=y", "--disable=C0116"]
+        additional_dependencies:
+          [
+            aiomcache,
+            fsspec,
+            multidict,
             orjson,
             piccolo,
             picologging,
@@ -170,6 +197,7 @@ repos:
     rev: v1.1.279
     hooks:
       - id: pyright
+        exclude: "examples*"
         additional_dependencies:
           [
             aiomcache,
